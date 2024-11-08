@@ -2,6 +2,14 @@
   <h2>Maestros registrados</h2>
   <br />
   <app-add-modal></app-add-modal>
+  <button
+    class="btn btn-secondary"
+    style="margin-left: 6px"
+    (click)="sendBirthdayEmail()"
+  >
+    Enviar felicitaciones de hoy
+    <i class="fa fa-calendar" style="margin-left: 4px"></i>
+  </button>
   <hr />
   <div class="row card-container">
     <div class="table-responsive">

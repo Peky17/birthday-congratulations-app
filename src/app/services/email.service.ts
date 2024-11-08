@@ -47,4 +47,25 @@ export class EmailService {
       headers: this.getAuthHeaders(),
     });
   }
+
+  // Send email to all teachers that birthday is today
+  sendBirthdayEmail(): Observable<any> {
+    return this.httpClient.post<any>(
+      `${environment.baseUrl}/schedule/check-teacher-birthdays`,
+      {
+        headers: this.getAuthHeaders(),
+      }
+    );
+  }
+
+  // Send an email to any person (teacher, student, etc)
+  sendEmailToAnyPerson(data: any): Observable<any> {
+    return this.httpClient.post<any>(
+      `${environment.baseUrl}/mail/sendEmailToTeacher`,
+      data,
+      {
+        headers: this.getAuthHeaders(),
+      }
+    );
+  }
 }

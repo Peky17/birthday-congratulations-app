@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TeacherService } from 'src/app/services/teacher.service';
+import { EmailService } from 'src/app/services/email.service';
 import Swal from 'sweetalert2';
 import { UpdateModalComponent } from './modals/update-modal/update-modal.component';
 
@@ -14,6 +15,7 @@ export class TeachersComponent implements OnInit {
 
   constructor(
     private teacherService: TeacherService,
+    private emailService: EmailService,
     private modalService: NgbModal
   ) {}
 
@@ -75,5 +77,47 @@ export class TeachersComponent implements OnInit {
         );
       }
     );
+  }
+
+  sendBirthdayEmail(): void {
+    Swal.fire({
+      title: '¿Estás seguro de enviar el correo?',
+      text: 'Se enviará un correo a todos los profesores que cumplan años hoy.',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Sí, enviar',
+      cancelButtonText: 'No, cancelar',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: 'Enviando correo...',
+          text: 'Por favor, espere.',
+          allowOutsideClick: false,
+          didOpen: () => {
+            Swal.showLoading();
+          },
+        });
+
+        this.emailService.sendBirthdayEmail().subscribe(
+          (response) => {},
+          (error) => {
+            Swal.close();
+            if (error.status === 200) {
+              Swal.fire(
+                'Correo enviado',
+                'Correos enviados correctamente.',
+                'success'
+              );
+            } else {
+              Swal.fire(
+                'Error',
+                'Hubo un problema al enviar el correo.',
+                'error'
+              );
+            }
+          }
+        );
+      }
+    });
   }
 }

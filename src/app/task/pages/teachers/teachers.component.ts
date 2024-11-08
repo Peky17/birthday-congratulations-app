@@ -45,4 +45,35 @@ export class TeachersComponent implements OnInit {
       }
     );
   }
+
+  confirmDelete(id: string, name: string): void {
+    Swal.fire({
+      title: '¿Estás seguro de eliminar del registro?',
+      text: `Profesor: ${name}`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Sí, eliminar',
+      cancelButtonText: 'No, cancelar',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.deleteTeacher(id);
+      }
+    });
+  }
+
+  deleteTeacher(id: string): void {
+    this.teacherService.deleteTeacher(id).subscribe(
+      () => {
+        Swal.fire('Eliminado', 'El profesor ha sido eliminado.', 'success');
+        this.getTeachers();
+      },
+      (error) => {
+        Swal.fire(
+          'Error',
+          'Hubo un problema al eliminar el profesor.',
+          'error'
+        );
+      }
+    );
+  }
 }

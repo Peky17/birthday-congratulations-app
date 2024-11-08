@@ -33,7 +33,12 @@
                 >
                   Editar
                 </button>
-                <button class="btn btn-danger">Eliminar</button>
+                <button
+                  class="btn btn-danger"
+                  (click)="confirmDelete(teacher.id, teacher.name)"
+                >
+                  Eliminar
+                </button>
               </div>
             </td>
           </tr>

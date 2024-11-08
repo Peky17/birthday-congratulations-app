@@ -11,6 +11,7 @@ import { AdministratorsComponent } from './pages/administrators/administrators.c
 import { ManageTemplateComponent } from './pages/manage-template/manage-template.component';
 import { TeachersComponent } from './pages/teachers/teachers.component';
 import { AddModalComponent } from './pages/teachers/modals/add-modal/add-modal.component';
+import { UpdateModalComponent } from './pages/teachers/modals/update-modal/update-modal.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { AddModalComponent } from './pages/teachers/modals/add-modal/add-modal.c
     EmailsComponent,
     AdministratorsComponent,
     ManageTemplateComponent,
+    UpdateModalComponent,
   ],
   imports: [CommonModule, TaskRoutingModule, ReactiveFormsModule],
   exports: [MainTaskComponent, NavbarComponent, FooterComponent],

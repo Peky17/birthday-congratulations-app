@@ -1,1 +1,28 @@
-<p>emails works!</p>
+<div class="container">
+  <h2>Emails enviados <i class="fa fa-inbox"></i></h2>
+  <hr />
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>ID Profesor</th>
+          <th>Fecha</th>
+          <th>Acción</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let email of emails">
+          <td>{{ email.id }}</td>
+          <td>{{ email.teacherId }}</td>
+          <td>{{ email.date }}</td>
+          <td>
+            <button class="btn btn-secondary">
+              Generar correo <i class="fa fa-inbox" style="margin-left: 2px;"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

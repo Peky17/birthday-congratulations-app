@@ -1,0 +1,67 @@
+<nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
+  <div class="container-fluid">
+    <a class="navbar-brand">Sistema de felicitaciones</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarColor02"
+      aria-controls="navbarColor02"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarColor02">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a
+            style="cursor: pointer"
+            class="nav-link"
+            routerLinkActive="active"
+            [routerLink]="['/dashboard/teachers']"
+            >Docentes
+            <span class="visually-hidden">(current)</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            style="cursor: pointer"
+            class="nav-link"
+            routerLinkActive="active"
+            [routerLink]="['/dashboard/administrators']"
+            >Administradores
+            <span class="visually-hidden">(current)</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            style="cursor: pointer"
+            class="nav-link"
+            routerLinkActive="active"
+            [routerLink]="['/dashboard/emails']"
+            >Emails
+            <span class="visually-hidden">(current)</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            style="cursor: pointer"
+            class="nav-link"
+            routerLinkActive="active"
+            [routerLink]="['/dashboard/manageTemplate']"
+            >Gestionar información de plantilla
+            <span class="visually-hidden">(current)</span>
+          </a>
+        </li>
+      </ul>
+      <button
+        class="btn btn-secondary my-2 my-sm-0"
+        type="button"
+        (click)="logOut()"
+      >
+        Cerrar sesión
+      </button>
+    </div>
+  </div>
+</nav>

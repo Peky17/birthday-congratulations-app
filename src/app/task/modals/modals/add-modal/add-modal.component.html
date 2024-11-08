@@ -1,0 +1,33 @@
+<!-- Contenido del modal template -->
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Agregar una nueva tarea</h4>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="d('Cross click')"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="addFormulario" (ngSubmit)="addTarea()">
+      <div class="form-group">
+        <label for="nombre"><b>Nombre de la tarea</b></label>
+        <br />
+        <input
+          formControlName="nombre"
+          type="text"
+          class="form-control"
+          id="nombre"
+          placeholder="Introduce texto"
+        />
+      </div><br><br>
+      <button type="submit" class="btn btn-outline-dark">Guardar tarea</button>
+    </form>
+  </div>
+</ng-template>
+
+<!-- Botón que accionará el modal -->
+<button type="submit" class="btn btn-primary" (click)="open(content)">
+  Agregar tarea <i style="margin-left: 2px" class="fa fa-plus"></i>
+</button>

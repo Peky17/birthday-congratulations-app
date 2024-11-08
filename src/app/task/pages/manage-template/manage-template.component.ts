@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
+import { TemplateService } from 'src/app/services/template.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-manage-template',
@@ -11,7 +12,10 @@ export class ManageTemplateComponent implements OnInit {
   templateForm: FormGroup;
   templateId: number | null = null;
 
-  constructor(private fb: FormBuilder, private http: HttpClient) {
+  constructor(
+    private fb: FormBuilder,
+    private templateService: TemplateService
+  ) {
     this.templateForm = this.fb.group({
       title: ['', Validators.required],
       subtitle: ['', Validators.required],
@@ -27,7 +31,7 @@ export class ManageTemplateComponent implements OnInit {
   }
 
   loadTemplate(): void {
-    this.http.get<any>('API_ENDPOINT/templates').subscribe((data) => {
+    this.templateService.getTemplates().subscribe((data) => {
       if (data && data.length > 0) {
         const template = data[0];
         this.templateId = template.id;
@@ -40,18 +44,30 @@ export class ManageTemplateComponent implements OnInit {
     if (this.templateForm.valid) {
       const templateData = this.templateForm.value;
       if (this.templateId) {
-        this.http
-          .put(`API_ENDPOINT/templates/${this.templateId}`, templateData)
+        this.templateService
+          .updateTemplate(this.templateId.toString(), templateData)
           .subscribe((response) => {
             console.log('Template updated', response);
+            Swal.fire(
+              'Operación Éxitosa',
+              'Plantilla actualizada correctamente',
+              'success'
+            );
           });
       } else {
-        this.http
-          .post('API_ENDPOINT/templates', templateData)
+        this.templateService
+          .createTemplate(templateData)
           .subscribe((response) => {
             console.log('Template created', response);
+            Swal.fire(
+              'Operación Éxitosa',
+              'Plantilla creada correctamente',
+              'success'
+            );
           });
       }
+    } else {
+      Swal.fire('Error', 'Porfavor llene el formulario', 'error');
     }
   }
 }

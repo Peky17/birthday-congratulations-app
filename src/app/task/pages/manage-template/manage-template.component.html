@@ -1,12 +1,12 @@
 <div class="container">
   <div class="card">
     <div class="card-header">
-      <h3>Manage Template</h3>
+      <h3>Gestionar datos del template</h3>
     </div>
     <div class="card-body">
       <form [formGroup]="templateForm" (ngSubmit)="onSubmit()">
-        <div class="form-group">
-          <label for="title">Title</label>
+        <div class="form-group mb-3">
+          <label for="title"><strong>Título</strong></label>
           <input
             id="title"
             formControlName="title"
@@ -14,8 +14,8 @@
             type="text"
           />
         </div>
-        <div class="form-group">
-          <label for="subtitle">Subtitle</label>
+        <div class="form-group mb-3">
+          <label for="subtitle"><strong>Subtitulo</strong></label>
           <input
             id="subtitle"
             formControlName="subtitle"
@@ -23,16 +23,20 @@
             type="text"
           />
         </div>
-        <div class="form-group">
-          <label for="description">Description</label>
+        <div class="form-group mb-3">
+          <label for="description"
+            ><strong>Mensaje para el profesor</strong></label
+          >
           <textarea
             id="description"
             formControlName="description"
             class="form-control"
           ></textarea>
         </div>
-        <div class="form-group">
-          <label for="logoSrc">Logo Source</label>
+        <div class="form-group mb-3">
+          <label for="logoSrc"
+            ><strong>Link del logo (Post Image)</strong></label
+          >
           <input
             id="logoSrc"
             formControlName="logoSrc"
@@ -40,8 +44,10 @@
             type="text"
           />
         </div>
-        <div class="form-group">
-          <label for="rectorName">Rector Name</label>
+        <div class="form-group mb-3">
+          <label for="rectorName"
+            ><strong>Nombre del rector en turno</strong></label
+          >
           <input
             id="rectorName"
             formControlName="rectorName"
@@ -49,8 +55,12 @@
             type="text"
           />
         </div>
-        <div class="form-group">
-          <label for="rectorSignatureSrc">Rector Signature Source</label>
+        <div class="form-group mb-3">
+          <label for="rectorSignatureSrc"
+            ><strong
+              >Link de la firma del rector en turno (Post Image)</strong
+            ></label
+          >
           <input
             id="rectorSignatureSrc"
             formControlName="rectorSignatureSrc"
@@ -58,9 +68,10 @@
             type="text"
           />
         </div>
-        <button type="submit" class="btn btn-primary mt-3">Save</button>
+        <button type="submit" class="btn btn-primary mt-3">
+          Guardar cambios <i style="margin-right: 3px" class="fa fa-save"></i>
+        </button>
       </form>
     </div>
   </div>
 </div>
-<br />

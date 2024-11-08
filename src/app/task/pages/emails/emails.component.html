@@ -17,7 +17,7 @@
           <td>{{ email.teacherId }}</td>
           <td>{{ email.date }}</td>
           <td>
-            <button class="btn btn-secondary">
+            <button class="btn btn-secondary" (click)="generateEmail(email);">
               Generar correo <i class="fa fa-inbox" style="margin-left: 2px;"></i>
             </button>
           </td>

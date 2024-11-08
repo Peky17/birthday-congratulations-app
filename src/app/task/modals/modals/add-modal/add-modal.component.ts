@@ -5,7 +5,7 @@ import {
   NgbModalConfig,
   NgbModalOptions,
 } from '@ng-bootstrap/ng-bootstrap';
-// import { TareasService } from 'src/app/services/tareas.service';
+import { TeacherService } from 'src/app/services/teacher.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -15,14 +15,24 @@ import Swal from 'sweetalert2';
   providers: [NgbModalConfig, NgbModal],
 })
 export class AddModalComponent {
+  addFormulario: FormGroup;
+
   constructor(
     config: NgbModalConfig,
     private modalService: NgbModal,
-    // private tareasService: TareasService,
+    private teacherService: TeacherService,
     private formBuilder: FormBuilder
   ) {
     config.backdrop = 'static';
     config.keyboard = true;
+
+    this.addFormulario = this.formBuilder.group({
+      name: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
+      phone: ['', [Validators.required]],
+      address: ['', [Validators.required]],
+      birthdate: ['', [Validators.required]],
+    });
   }
 
   open(content: any) {
@@ -34,36 +44,27 @@ export class AddModalComponent {
     this.modalService.open(content, modalOptions);
   }
 
-  addFormulario: FormGroup = this.formBuilder.group({
-    nombre: ['', [Validators.required, Validators.minLength(6)]],
-  });
-
-  addTarea() {
-    // Instanciar el formulario
+  addTeacher() {
     const formData = this.addFormulario.value;
-    // Realizar la petición
-    // this.tareasService.addTarea(formData).subscribe((res) => {
-    //   if (res === 'true') {
-    //     // Cerrar modal
-    //     this.modalService.dismissAll();
-    //     // Alertar
-    //     Swal.fire({
-    //       title: 'OPERACIÓN EXITOSA',
-    //       text: 'Tarea registrada con éxito',
-    //       icon: 'success',
-    //     }).then(() => {
-    //       // Recargar la página
-    //       location.reload();
-    //     });
-    //   } else {
-    //     Swal.fire({
-    //       title: 'OPERACIÓN DENEGADA',
-    //       text: res,
-    //       icon: 'error',
-    //     });
-    //     // Cerrar modal
-    //     this.modalService.dismissAll();
-    //   }
-    // });
+    this.teacherService.createTeacher(formData).subscribe(
+      (res) => {
+        this.modalService.dismissAll();
+        Swal.fire({
+          title: 'OPERACIÓN EXITOSA',
+          text: 'Profesor registrado con éxito',
+          icon: 'success',
+        }).then(() => {
+          location.reload();
+        });
+      },
+      (err) => {
+        Swal.fire({
+          title: 'OPERACIÓN DENEGADA',
+          text: err.error.message,
+          icon: 'error',
+        });
+        this.modalService.dismissAll();
+      }
+    );
   }
 }

@@ -7,35 +7,23 @@ import { MainTaskComponent } from './main-task.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { AddModalComponent } from './modals/modals/add-modal/add-modal.component';
 import { FooterComponent } from './shared/footer/footer.component';
-import { UpdateModalComponent } from './modals/modals/update-modal/update-modal.component';
 import { EmailsComponent } from './pages/emails/emails.component';
 import { AdministratorsComponent } from './pages/administrators/administrators.component';
 import { ManageTemplateComponent } from './pages/manage-template/manage-template.component';
 import { TeachersComponent } from './pages/teachers/teachers.component';
-
 
 @NgModule({
   declarations: [
     MainTaskComponent,
     NavbarComponent,
     FooterComponent,
-    UpdateModalComponent,
     AddModalComponent,
     TeachersComponent,
     EmailsComponent,
     AdministratorsComponent,
-    ManageTemplateComponent
+    ManageTemplateComponent,
   ],
-  imports: [
-    CommonModule,
-    TaskRoutingModule,
-    ReactiveFormsModule
-  ],
-  exports: [
-    MainTaskComponent,
-    NavbarComponent,
-    FooterComponent,
-    UpdateModalComponent
-  ]
+  imports: [CommonModule, TaskRoutingModule, ReactiveFormsModule],
+  exports: [MainTaskComponent, NavbarComponent, FooterComponent],
 })
-export class TaskModule { }
+export class TaskModule {}

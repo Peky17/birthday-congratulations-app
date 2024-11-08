@@ -1,7 +1,8 @@
-<!-- Contenido del modal template -->
 <ng-template #content let-c="close" let-d="dismiss">
   <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Agregar una nueva tarea</h4>
+    <h4 class="modal-title" id="modal-basic-title">
+      Agregar un nuevo profesor
+    </h4>
     <button
       type="button"
       class="btn-close"
@@ -10,24 +11,64 @@
     ></button>
   </div>
   <div class="modal-body">
-    <form [formGroup]="addFormulario" (ngSubmit)="addTarea()">
+    <form [formGroup]="addFormulario" (ngSubmit)="addTeacher()">
       <div class="form-group">
-        <label for="nombre"><b>Nombre de la tarea</b></label>
-        <br />
+        <label for="name"><b>Nombre</b></label>
         <input
-          formControlName="nombre"
+          formControlName="name"
           type="text"
           class="form-control"
-          id="nombre"
-          placeholder="Introduce texto"
+          id="name"
+          placeholder="Introduce nombre"
         />
-      </div><br><br>
-      <button type="submit" class="btn btn-outline-dark">Guardar tarea</button>
+      </div>
+      <div class="form-group">
+        <label for="email"><b>Email</b></label>
+        <input
+          formControlName="email"
+          type="email"
+          class="form-control"
+          id="email"
+          placeholder="Introduce email"
+        />
+      </div>
+      <div class="form-group">
+        <label for="phone"><b>Teléfono</b></label>
+        <input
+          formControlName="phone"
+          type="text"
+          class="form-control"
+          id="phone"
+          placeholder="Introduce teléfono"
+        />
+      </div>
+      <div class="form-group">
+        <label for="address"><b>Dirección</b></label>
+        <input
+          formControlName="address"
+          type="text"
+          class="form-control"
+          id="address"
+          placeholder="Introduce dirección"
+        />
+      </div>
+      <div class="form-group">
+        <label for="birthdate"><b>Fecha de nacimiento</b></label>
+        <input
+          formControlName="birthdate"
+          type="date"
+          class="form-control"
+          id="birthdate"
+        />
+      </div>
+      <br />
+      <button type="submit" class="btn btn-outline-dark">
+        Guardar profesor
+      </button>
     </form>
   </div>
 </ng-template>
 
-<!-- Botón que accionará el modal -->
-<button type="submit" class="btn btn-primary" (click)="open(content)">
-  Agregar tarea <i style="margin-left: 2px" class="fa fa-plus"></i>
+<button type="button" class="btn btn-primary" (click)="open(content)">
+  Agregar profesor <i style="margin-left: 2px" class="fa fa-plus"></i>
 </button>

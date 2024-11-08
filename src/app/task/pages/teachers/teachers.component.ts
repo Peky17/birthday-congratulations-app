@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { TeacherService } from 'src/app/services/teacher.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-teachers',
@@ -20,4 +21,5 @@ export class TeachersComponent implements OnInit {
       this.teachers = data;
     });
   }
+
 }

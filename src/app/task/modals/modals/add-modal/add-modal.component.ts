@@ -5,7 +5,7 @@ import {
   NgbModalConfig,
   NgbModalOptions,
 } from '@ng-bootstrap/ng-bootstrap';
-import { TareasService } from 'src/app/services/tareas.service';
+// import { TareasService } from 'src/app/services/tareas.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -18,7 +18,7 @@ export class AddModalComponent {
   constructor(
     config: NgbModalConfig,
     private modalService: NgbModal,
-    private tareasService: TareasService,
+    // private tareasService: TareasService,
     private formBuilder: FormBuilder
   ) {
     config.backdrop = 'static';
@@ -42,28 +42,28 @@ export class AddModalComponent {
     // Instanciar el formulario
     const formData = this.addFormulario.value;
     // Realizar la petición
-    this.tareasService.addTarea(formData).subscribe((res) => {
-      if (res === 'true') {
-        // Cerrar modal
-        this.modalService.dismissAll();
-        // Alertar
-        Swal.fire({
-          title: 'OPERACIÓN EXITOSA',
-          text: 'Tarea registrada con éxito',
-          icon: 'success',
-        }).then(() => {
-          // Recargar la página
-          location.reload();
-        });
-      } else {
-        Swal.fire({
-          title: 'OPERACIÓN DENEGADA',
-          text: res,
-          icon: 'error',
-        });
-        // Cerrar modal
-        this.modalService.dismissAll();
-      }
-    });
+    // this.tareasService.addTarea(formData).subscribe((res) => {
+    //   if (res === 'true') {
+    //     // Cerrar modal
+    //     this.modalService.dismissAll();
+    //     // Alertar
+    //     Swal.fire({
+    //       title: 'OPERACIÓN EXITOSA',
+    //       text: 'Tarea registrada con éxito',
+    //       icon: 'success',
+    //     }).then(() => {
+    //       // Recargar la página
+    //       location.reload();
+    //     });
+    //   } else {
+    //     Swal.fire({
+    //       title: 'OPERACIÓN DENEGADA',
+    //       text: res,
+    //       icon: 'error',
+    //     });
+    //     // Cerrar modal
+    //     this.modalService.dismissAll();
+    //   }
+    // });
   }
 }

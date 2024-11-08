@@ -2,24 +2,45 @@
   <h2>Maestros registrados</h2>
   <br />
   <!-- Agregar modal -->
-  <app-add-modal></app-add-modal>
+  <!-- <app-add-modal></app-add-modal> -->
   <!-- Renderizar lista de tareas -->
   <div class="row card-container">
-    <!-- <div *ngFor="let task of tasks" class="card bg-light mb-3">
-      <div class="card-body">
-        <h4 class="card-title">{{ task.nombre }}</h4>
-        <br />
-        <div class="btn-group" role="group" aria-label="Botones de acción">
-          <app-update-modal
-            style="margin-right: 2px"
-            [tarea]="task"
-          ></app-update-modal>
-          <app-delete-modal
-            style="margin-right: 2px"
-            [tarea]="task"
-          ></app-delete-modal>
-        </div>
-      </div>
-    </div> -->
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Email</th>
+            <th>Teléfono</th>
+            <th>Dirección</th>
+            <th>Birthdate</th>
+            <th>Acción</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let teacher of teachers">
+            <td>{{ teacher.id }}</td>
+            <td>{{ teacher.name }}</td>
+            <td>{{ teacher.email }}</td>
+            <td>{{ teacher.phone }}</td>
+            <td>{{ teacher.address }}</td>
+            <td>{{ teacher.birthdate }}</td>
+            <td>
+              <div class="btn-group">
+                <button
+                  class="btn btn-primary"
+                  data-toggle="modal"
+                  data-target="#editTeacherModal"
+                >
+                  Editar
+                </button>
+                <button class="btn btn-danger">Eliminar</button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>

@@ -5,7 +5,7 @@ import {
   NgbModalConfig,
   NgbModalOptions,
 } from '@ng-bootstrap/ng-bootstrap';
-import { TareasService } from 'src/app/services/tareas.service';
+// import { TareasService } from 'src/app/services/tareas.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -23,7 +23,7 @@ export class UpdateModalComponent implements OnInit {
   constructor(
     config: NgbModalConfig,
     private modalService: NgbModal,
-    private tareasService: TareasService,
+    // private tareasService: TareasService,
     private formBuilder: FormBuilder
   ) {
     config.backdrop = 'static';
@@ -55,28 +55,28 @@ export class UpdateModalComponent implements OnInit {
     // Obtener el id de la tarea
     const idTarea: string = this.tarea._id;
     // Realizar la petición
-    this.tareasService.actualizarTarea(formData, idTarea).subscribe((res) => {
-      if (res === 'true') {
-        // Cerrar modal
-        this.modalService.dismissAll();
-        // Alertar
-        Swal.fire({
-          title: 'OPERACIÓN EXITOSA',
-          text: 'Tarea actualizada con éxito',
-          icon: 'success',
-        }).then(() => {
-          // Recargar la página
-          location.reload();
-        });
-      } else {
-        Swal.fire({
-          title: 'OPERACIÓN DENEGADA',
-          text: res,
-          icon: 'error',
-        });
-        // Cerrar modal
-        this.modalService.dismissAll();
-      }
-    });
+    // this.tareasService.actualizarTarea(formData, idTarea).subscribe((res) => {
+    //   if (res === 'true') {
+    //     // Cerrar modal
+    //     this.modalService.dismissAll();
+    //     // Alertar
+    //     Swal.fire({
+    //       title: 'OPERACIÓN EXITOSA',
+    //       text: 'Tarea actualizada con éxito',
+    //       icon: 'success',
+    //     }).then(() => {
+    //       // Recargar la página
+    //       location.reload();
+    //     });
+    //   } else {
+    //     Swal.fire({
+    //       title: 'OPERACIÓN DENEGADA',
+    //       text: res,
+    //       icon: 'error',
+    //     });
+    //     // Cerrar modal
+    //     this.modalService.dismissAll();
+    //   }
+    // });
   }
 }

@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { TeacherService } from 'src/app/services/teacher.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-update-modal',
@@ -40,6 +41,17 @@ export class UpdateModalComponent implements OnInit {
             console.error('Error updating teacher', error);
           }
         );
+    } else {
+      Swal.fire({
+        toast: true,
+        title: 'OPERACIÓN DENEGADA',
+        text: 'Por favor, complete todos los campos',
+        icon: 'error',
+        position: 'top-right',
+        timer: 2000,
+        timerProgressBar: true,
+        showConfirmButton: false,
+      });
     }
   }
 }

@@ -7,7 +7,7 @@ import { environment } from '../environments/environment';
   providedIn: 'root',
 })
 export class AdministratorService {
-  private baseUrl = environment.baseUrl + '/api/v1/administrators';
+  private baseUrl = environment.baseUrl + '/administrators';
 
   constructor(private httpClient: HttpClient) {}
 

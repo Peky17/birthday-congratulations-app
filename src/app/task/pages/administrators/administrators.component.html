@@ -1,1 +1,40 @@
-<p>administrators works!</p>
+<div class="container">
+  <h2>Administradores registrados</h2>
+  <br />
+  <app-add-admin-modal></app-add-admin-modal>
+  <hr />
+  <div class="row card-container">
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Email</th>
+            <th>Teléfono</th>
+            <th>Acción</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let admin of administrators">
+            <td>{{ admin.id }}</td>
+            <td>{{ admin.name }}</td>
+            <td>{{ admin.username }}</td>
+            <td>{{ admin.cellphone }}</td>
+            <td>
+              <div class="btn-group">
+                <button
+                  class="btn btn-danger"
+                  (click)="confirmDelete(admin.id, admin.name)"
+                >
+                  Eliminar
+                  <i class="fa fa-trash"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

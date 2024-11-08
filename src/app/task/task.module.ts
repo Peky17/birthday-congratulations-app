@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NgbModule, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { TaskRoutingModule } from './task-routing.module';
 import { MainTaskComponent } from './main-task.component';
@@ -12,7 +13,7 @@ import { ManageTemplateComponent } from './pages/manage-template/manage-template
 import { TeachersComponent } from './pages/teachers/teachers.component';
 import { AddModalComponent } from './pages/teachers/modals/add-modal/add-modal.component';
 import { UpdateModalComponent } from './pages/teachers/modals/update-modal/update-modal.component';
-
+import { AddAdminModalComponent } from './pages/administrators/modals/add-admin-modal/add-admin-modal.component';
 @NgModule({
   declarations: [
     MainTaskComponent,
@@ -24,6 +25,7 @@ import { UpdateModalComponent } from './pages/teachers/modals/update-modal/updat
     AdministratorsComponent,
     ManageTemplateComponent,
     UpdateModalComponent,
+    AddAdminModalComponent,
   ],
   imports: [CommonModule, TaskRoutingModule, ReactiveFormsModule],
   exports: [MainTaskComponent, NavbarComponent, FooterComponent],

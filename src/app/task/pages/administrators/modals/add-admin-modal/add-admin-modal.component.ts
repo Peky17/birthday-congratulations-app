@@ -1,43 +1,39 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {
+  NgbActiveModal,
   NgbModal,
   NgbModalConfig,
   NgbModalOptions,
 } from '@ng-bootstrap/ng-bootstrap';
-import { TeacherService } from 'src/app/services/teacher.service';
+import { AdministratorService } from 'src/app/services/administrator.service';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-add-modal',
-  templateUrl: './add-modal.component.html',
-  styleUrls: ['./add-modal.component.css'],
+  selector: 'app-add-admin-modal',
+  templateUrl: './add-admin-modal.component.html',
+  styleUrls: ['./add-admin-modal.component.css'],
   providers: [NgbModalConfig, NgbModal],
 })
-export class AddModalComponent {
+export class AddAdminModalComponent implements OnInit {
   addFormulario: FormGroup;
 
   constructor(
-    config: NgbModalConfig,
+    private fb: FormBuilder,
+    public activeModal: NgbActiveModal,
     private modalService: NgbModal,
-    private teacherService: TeacherService,
-    private formBuilder: FormBuilder
+    private administratorService: AdministratorService
   ) {
-    config.backdrop = 'static';
-    config.keyboard = true;
-
-    this.addFormulario = this.formBuilder.group({
-      name: ['', [Validators.required, Validators.minLength(4)]],
+    this.addFormulario = this.fb.group({
+      name: ['', Validators.required, Validators.minLength(4)],
       email: ['', [Validators.required, Validators.email]],
-      phone: [
+      cellphone: [
         '',
-        [Validators.required],
+        Validators.required,
         Validators.minLength(10),
         Validators.maxLength(10),
-        Validators.pattern('^[0-9]*$'),
       ],
-      address: ['', [Validators.required], Validators.minLength(5)],
-      birthdate: ['', [Validators.required], Validators.minLength(2)],
+      password: ['', Validators.required],
     });
   }
 
@@ -50,7 +46,9 @@ export class AddModalComponent {
     this.modalService.open(content, modalOptions);
   }
 
-  addTeacher() {
+  ngOnInit(): void {}
+
+  addAdmin() {
     const formData = this.addFormulario.value;
     if (this.addFormulario.invalid) {
       Swal.fire({
@@ -64,7 +62,7 @@ export class AddModalComponent {
         showConfirmButton: false,
       });
     } else {
-      this.teacherService.createTeacher(formData).subscribe(
+      this.administratorService.createAdministrator(formData).subscribe(
         (res) => {
           this.modalService.dismissAll();
           Swal.fire({
